@@ -1,0 +1,260 @@
+{
+    "last_updated": "2018-01-19",
+    "description": "Country, regional and world GDP in current US Dollars ($). Regional means collections of countries e.g. Europe & Central Asia. Data is sourced from the World Bank and turned into a standard normalized CSV.",
+    "image": "http://assets.okfn.org/p/opendatahandbook/img/data-wrench.png",
+    "sources": [
+        {
+            "name": "World Bank and OECD",
+            "path": "http://data.worldbank.org/indicator/NY.GDP.MKTP.CD",
+            "title": "World Bank and OECD"
+        }
+    ],
+    "name": "gdp",
+    "keywords": [
+        "GDP",
+        "World",
+        "Gross Domestic Product",
+        "Time series"
+    ],
+    "profile": "data-package",
+    "id": "core/gdp",
+    "title": "Country, Regional and World GDP (Gross Domestic Product)",
+    "resources": [
+        {
+            "hash": "8500533ca81a0cd8993867c3bf11c30e",
+            "name": "validation_report",
+            "path": "https://pkgstore.datahub.io/core/gdp/validation_report/data/8500533ca81a0cd8993867c3bf11c30e/validation_report.json",
+            "dpp:streamedFrom": "validation_report.json",
+            "encoding": "utf-8",
+            "datahub": {
+                "type": "derived/report"
+            },
+            "description": "Validation report for tabular data",
+            "bytes": 591,
+            "profile": "data-resource",
+            "format": "json"
+        },
+        {
+            "hash": "0048bc8f6228d0393d41cac4b663b90f",
+            "encoding": "utf-8",
+            "name": "gdp_csv",
+            "dialect": {
+                "quoteChar": "\"",
+                "lineTerminator": "\r\n",
+                "delimiter": ",",
+                "skipInitialSpace": false,
+                "doubleQuote": true
+            },
+            "bytes": 454342,
+            "profile": "data-resource",
+            "signed": true,
+            "path": "https://pkgstore.datahub.io/core/gdp/gdp_csv/data/0048bc8f6228d0393d41cac4b663b90f/gdp_csv.csv",
+            "rowcount": 11507,
+            "dpp:streamedFrom": "https://s3.amazonaws.com/rawstore.datahub.io/d23467a8c0db40a04e73a01ea019cbf3.csv",
+            "datahub": {
+                "type": "derived/csv",
+                "derivedFrom": [
+                    "gdp"
+                ]
+            },
+            "schema": {
+                "fields": [
+                    {
+                        "name": "Country Name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Country Code",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Year",
+                        "type": "year"
+                    },
+                    {
+                        "type": "number",
+                        "name": "Value",
+                        "description": "GDP in current USD",
+                        "decimalChar": ".",
+                        "groupChar": ""
+                    }
+                ]
+            },
+            "format": "csv"
+        },
+        {
+            "hash": "1a2503aa36368933be8f9a96e1dc16de",
+            "encoding": "utf-8",
+            "name": "gdp_json",
+            "bytes": 1111120,
+            "profile": "data-resource",
+            "signed": true,
+            "path": "https://pkgstore.datahub.io/core/gdp/gdp_json/data/1a2503aa36368933be8f9a96e1dc16de/gdp_json.json",
+            "rowcount": 11507,
+            "dpp:streamedFrom": "https://s3.amazonaws.com/rawstore.datahub.io/d23467a8c0db40a04e73a01ea019cbf3.csv",
+            "datahub": {
+                "type": "derived/json",
+                "derivedFrom": [
+                    "gdp"
+                ]
+            },
+            "schema": {
+                "fields": [
+                    {
+                        "name": "Country Name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Country Code",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Year",
+                        "type": "year"
+                    },
+                    {
+                        "name": "Value",
+                        "description": "GDP in current USD",
+                        "type": "number"
+                    }
+                ]
+            },
+            "format": "json"
+        },
+        {
+            "format": "zip",
+            "path": "https://pkgstore.datahub.io/core/gdp/gdp_zip/data/fe52c281d5adc774c020e950f129e464/gdp_zip.zip",
+            "dpp:streamedFrom": "/tmp/290.gdp.zip",
+            "encoding": "utf-8",
+            "datahub": {
+                "type": "derived/zip"
+            },
+            "description": "Compressed versions of dataset. Includes normalized CSV and JSON data with original data and datapackage.json.",
+            "bytes": 436802,
+            "profile": "data-resource",
+            "name": "gdp_zip"
+        },
+        {
+            "hash": "ee9c1ba860db23d7ff54050541251518",
+            "encoding": "utf-8",
+            "name": "gdp_csv_preview",
+            "dialect": {
+                "quoteChar": "\"",
+                "lineTerminator": "\r\n",
+                "delimiter": ",",
+                "skipInitialSpace": false,
+                "doubleQuote": true
+            },
+            "bytes": 670317,
+            "rowcount": 13507,
+            "signed": true,
+            "forView": [
+                "datahub-preview-gdp_csv_preview"
+            ],
+            "path": "https://pkgstore.datahub.io/core/gdp/gdp_csv_preview/data/ee9c1ba860db23d7ff54050541251518/gdp_csv_preview.json",
+            "profile": "data-resource",
+            "dpp:streamedFrom": "/tmp/tmp05oksc9z/core/gdp/gdp_csv/data/0048bc8f6228d0393d41cac4b663b90f/gdp_csv.csv",
+            "datahub": {
+                "type": "derived/preview",
+                "derivedFrom": [
+                    "gdp"
+                ]
+            },
+            "schema": {
+                "fields": [
+                    {
+                        "name": "Country Name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Country Code",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Year",
+                        "type": "year"
+                    },
+                    {
+                        "type": "number",
+                        "name": "Value",
+                        "description": "GDP in current USD",
+                        "decimalChar": ".",
+                        "groupChar": ""
+                    }
+                ]
+            },
+            "format": "json"
+        },
+        {
+            "signed": true,
+            "path": "https://pkgstore.datahub.io/core/gdp/gdp/archive/d23467a8c0db40a04e73a01ea019cbf3/gdp.csv",
+            "dpp:streamedFrom": "https://s3.amazonaws.com/rawstore.datahub.io/d23467a8c0db40a04e73a01ea019cbf3.csv",
+            "encoding": "utf-8",
+            "datahub": {
+                "type": "source/tabular"
+            },
+            "schema": {
+                "fields": [
+                    {
+                        "name": "Country Name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Country Code",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Year",
+                        "type": "year"
+                    },
+                    {
+                        "name": "Value",
+                        "description": "GDP in current USD",
+                        "type": "number"
+                    }
+                ]
+            },
+            "format": "csv",
+            "bytes": 454342,
+            "profile": "data-resource",
+            "name": "gdp"
+        }
+    ],
+    "readme": "Country, regional and world GDP in current US Dollars ($). Regional means\ncollections of countries e.g. Europe & Central Asia.\n\n## Data\n\nThe data is sourced from the World Bank (specifically [this dataset][current]) which\nin turn lists as sources: *World Bank national accounts data, and OECD National\nAccounts data files*.\n\nNote that there are a variety of different GDP indicators on offer from the\nWorld Bank including:\n\n* [GDP in current USD][current]\n* [GDP in constant USD (2000)][constant]\n* [GDP, PPP (constant 2005 international $)][ppp]\n* [GDP (constant LCU)][lcu]\n\n[constant]: http://data.worldbank.org/indicator/NY.GDP.MKTP.KD\n[current]: http://data.worldbank.org/indicator/NY.GDP.MKTP.CD\n[ppp]: http://data.worldbank.org/indicator/NY.GDP.MKTP.PP.KD\n[lcu]: http://data.worldbank.org/indicator/NY.GDP.MKTP.KN\n\n\n## Preparation\n\nProcess is recorded and automated in python script:\n\n```\nscripts/process.py\n```\n\n## Automation\n\nUp-to-date (auto-updates every year) gdp dataset could be found on the datahub.io:\nhttps://datahub.io/core/gdp\n\n## License\n\nThis Data Package is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: http://www.opendatacommons.org/licenses/pddl/1.0/",
+    "datahub": {
+        "hash": "6dd004b4ccbcf1575d00397733461fbe",
+        "created": "2017-11-08T22:07:43.161702",
+        "ownerid": "core",
+        "modified": "2018-03-15T06:19:35.762157",
+        "stats": {
+            "bytes": 3127514,
+            "rowcount": 11507
+        },
+        "owner": "core",
+        "findability": "published",
+        "flowid": "core/gdp/9"
+    },
+    "views": [
+        {
+            "datahub": {
+                "type": "preview"
+            },
+            "resources": [
+                "gdp"
+            ],
+            "specType": "table",
+            "transform": {
+                "limit": 2000
+            },
+            "name": "datahub-preview-gdp_csv_preview"
+        }
+    ],
+    "licenses": [
+        {
+            "name": "ODC-PDDL-1.0",
+            "path": "http://opendatacommons.org/licenses/pddl/",
+            "title": "Open Data Commons Public Domain Dedication and License v1.0"
+        }
+    ],
+    "version": "2017"
+}
