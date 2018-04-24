@@ -19,7 +19,7 @@ for submission_id in submission_ids[:30]:
     submission_r = requests.get(url)
     print(submission_r.status_code)
     response_dict = submission_r.json()
-    print(response_dict)
+
     submission_dict = {
         'label': response_dict['title'],
         'value': response_dict.get('descendants', 0),
@@ -30,13 +30,13 @@ for submission_id in submission_ids[:30]:
 submission_dicts = sorted(
     submission_dicts, key=itemgetter('value'), reverse=True)
 
-# for submission_dict in submission_dicts:
-#   print("\nTitle:", submission_dict['label'])
-#    print("Discussion link:", submission_dict['xlink'])
-#    print("Comments:", submission_dict['value'])
+for submission_dict in submission_dicts:
+    print("\nTitle:", submission_dict['label'])
+    print("Discussion link:", submission_dict['xlink'])
+    print("Comments:", submission_dict['value'])
 
 # 可视化
-'''my_style = LS('#333366', base_style=LCS)
+my_style = LS('#333366', base_style=LCS)
 
 my_config = pygal.Config()
 my_config.x_label_rotation = 45
@@ -51,25 +51,6 @@ my_config.width = 1000
 chart = pygal.Bar(my_config, style=my_style)
 chart.title = "Most popular essays in haker-news"
 chart.x_labels = list(range(1, 31)
-
-chart.add('', submission_dicts)
-chart.render_to_file('essays_comments.svg')
-'''
-my_style = LS('#333366', base_style=LCS)
-
-my_config = pygal.Config()
-my_config.x_label_rotation = 45
-my_config.show_legend = False
-my_config.title_font_size = 24
-my_config.label_font_size = 14
-my_config.major_label_font_size = 18
-my_config.truncate_label = 15
-my_config.show_y_guides = False
-my_config.width = 1000
-
-chart = pygal.Bar(my_config, style=my_style)
-chart.title = 'Most popular essays in haker-news'
-chart.x_labels = list(range(1, 31))
 
 chart.add('', submission_dicts)
 chart.render_to_file('essays_comments.svg')
