@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from benchmark import Benchmark
 '''
-#初始化参数
+# 初始化参数
 M        最大迭代次数
 pop      鸡群鸡数量
 dim      空间维度
@@ -12,14 +12,14 @@ hpercent 母鸡占总数百分比
 lowb     鸡群移动下限
 upb      鸡群移动上限
 
-#鸡群参数
+# 鸡群参数
 
 rNum     公鸡数量
 hNum     母鸡数量
 cNum     小鸡数量
 mNum     有小鸡的母鸡数量
 
-#鸡位置及标签
+# 鸡位置及标签
 
 x[][]    鸡位置信息
 px[][]   更新前鸡位置信息
@@ -54,6 +54,8 @@ class CSO:
         # 初始化鸡的位置
         self.x = pd.DataFrame(-1 + 2 *
                               np.random.rand(self.pop, self.dim)) * 100
+        self.px = self.x
+
         test = Benchmark(self.dim)
         for i in np.arange(self.pop):  # 初始化鸡的适应度
             xi = self.x.iloc[i]
@@ -63,11 +65,14 @@ class CSO:
         self.gfit = self.p_fit.min()   # 初始化全局最优适应度
         self.ind = self.p_fit.idxmin()
         self.gbest = self.x.iloc[self.ind]  # 初始化全局最优位置
+        # print("初始化鸡的位置")
+        # print(self.x)
 
     def runcso(self):
 
         for t in np.arange(1):
             for func in np.arange(10):      # 分别求十个测试函数的
+                self.px = self.x
                 func_pfit = self.pfit[func]
                 func_gfit = self.gfit[func]
                 func_gbest = self.gbest[func]
@@ -77,6 +82,12 @@ class CSO:
                     motherlib = np.array([])        # 成为母亲母鸡的标签
 
                     func_pfit = func_pfit.sort_values()
+                    tempIndex = func_pfit.index
+                    self.px = self.px.reindex(tempIndex)
+                    self.px.index = np.arange(self.pop)
+                    # print("排序后鸡的位置")
+                    # print(self.px)
+
                     chick = func_pfit[self.rNum + self.hNum:]
 
                     for i in np.arange(self.hNum):  # 将母鸡与公鸡随机进行配对
@@ -90,10 +101,31 @@ class CSO:
                             motherlib = np.append(motherlib, ml)
                             i = i + 1
 
-                    for i in np.arange(self.cNum):
+                    for i in np.arange(self.cNum):  # 小鸡与母鸡配对
                         mother = np.append(
                             mother, motherlib[np.random.randint(0, self.mNum)])
 
-                    print(mate)
-                    print(mother)
-                    print(motherlib)
+                for i in np.arange(self.rNum):
+                    while(True):  # 求另外一只随机公鸡
+                        anotherRooster = np.random.randint(0, self.rNum)
+                        if (anotherRooster != i):
+                            break
+
+                    if (func_pfit[anotherRooster] >= func_pfit[i]):  # 求tempSigma
+                        tempSigma = 1.0
+                    else:
+                        tempSigma = np.exp(
+                            (func_pfit[anotherRooster] - func_pfit[i]) / (np.abs(func_pfit[i]) + 0.0001))
+
+                    normalRandom = np.random.normal(
+                        0, tempSigma, self.dim)                     # 产生dim个正太分布随机数
+
+                    for j in np.arange(self.dim):  # 更新公鸡位置
+                        self.x.iloc[i][j] = self.px[i][j] * \
+                            (1 + normalRandom[j])
+                        if(self.x.iloc[i][j] > self.upb):
+                            self.x.iloc[i][j] = self.upb
+                        elif(self.x.iloc[i][j] < self.lowb):
+                            self.x.iloc[i][j] = self.lowb
+
+               for
