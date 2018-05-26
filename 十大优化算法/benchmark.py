@@ -4,10 +4,10 @@ import pandas as pd
 
 
 class Benchmark:
-    def __init__(self, dim):
+    def __init__(self, dim, f):
         self.xi = np.zeros(dim)
         # self.xi = xi
-        self.fit = np.zeros(10)
+        self.f = f
 
     def Sphere(self):
         result = 0
@@ -95,8 +95,8 @@ class Benchmark:
         self.xi = xi
         funcs = (self.Sphere, self.Schwefel1, self.Schwefel2, self.Schwefel3, self.Rosenbrock, self.Quartric, self.GeneralizedSchwefek,
                  self.Rastrigin, self.Ackley, self.Griewank)
-        for i in np.arange(10):
-            self.fit[i] = funcs[i]()
+
+        self.fit = funcs[self.f]()
 
         # self.fit[0] = self.Sphere()
         # self.fit[1] = self.Schwefel1()
